@@ -6,19 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        //
+        Schema::create('columnas', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('tablero_id');
+            $table->string('titulo', 255);
+            $table->integer('posicion');
+            $table->string('color', 255);
+            $table->timestamps();
+
+            // Relación con tablero
+            $table->foreign('tablero_id')
+                  ->references('id')->on('tablero')
+                  ->onDelete('cascade');
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('columnas');
     }
 };
