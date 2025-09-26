@@ -12,6 +12,7 @@ Route::prefix('/v1')->group(function () {
 
     Route::put('columnas/actualizar-orden', [ColumnaController::class, 'actualizarOrden']);
     Route::put('tareas/actualizar-orden', [TareaController::class, 'actualizarOrden']);
-
+    // Endpoint para mover/reordenar una tarea
+    Route::post('tareas/{tarea}/move', [TareaController::class, 'move']);
 
 });
